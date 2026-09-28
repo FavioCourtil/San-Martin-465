@@ -3,111 +3,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EDIFICIO SAN MARTIN SUITES - Oficina Técnica</title>
+  <title>Edificio San Martín Suites - Oficina Técnica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg-warm: #f8fafc;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --accent-bronze: #b45309;
-      --accent-bronze-light: #fef3c7;
+      --bg-dark: #0a0f18;
+      --card-bg: rgba(16, 24, 39, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --btn-bg: rgba(255, 255, 255, 0.03);
+      --btn-border: rgba(255, 255, 255, 0.08);
+      --btn-hover: rgba(255, 255, 255, 0.08);
+      --accent-orange: #d97706;
+      --accent-orange-light: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #64748b;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
 
     body {
-      background-color: var(--bg-warm);
+      background-color: var(--bg-dark);
       color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 24px 16px;
     }
 
     /* Modal PIN */
     .pin-overlay {
-      position: fixed; inset: 0;
-      background: rgba(248, 250, 252, 0.96);
-      backdrop-filter: blur(12px);
-      z-index: 999; display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.3s;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 24, 0.98);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .pin-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .pin-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     .pin-box {
-      background: #ffffff; border: 1px solid var(--border-color);
-      border-radius: 20px; padding: 32px 24px; max-width: 320px; width: 100%;
-      text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px 24px;
+      max-width: 330px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-    .pin-dots { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent-bronze); transition: all 0.2s; }
-    .dot.filled { background: var(--accent-bronze); transform: scale(1.1); }
-    .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-orange);
+      transition: all 0.2s;
+    }
+
+    .dot.filled {
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px var(--accent-orange);
+      transform: scale(1.1);
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
     .key-btn {
-      aspect-ratio: 1; border-radius: 12px; border: 1px solid var(--border-color);
-      background: #ffffff; font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;
-      cursor: pointer; transition: background 0.15s;
+      aspect-ratio: 1;
+      border-radius: 14px;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text-main);
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.1s;
     }
-    .key-btn:active { background: var(--border-color); }
 
-    /* Layout Main */
-    .container { max-width: 480px; width: 100%; display: flex; flex-direction: column; gap: 16px; }
+    .key-btn:active {
+      background: var(--accent-orange);
+      color: #000;
+      transform: scale(0.95);
+    }
 
+    /* Layout Contenedor */
+    .container {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header Principal */
     .header-card {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 20px; padding: 24px; text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
     }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      font-size: 0.95rem;
+    }
+
+    .brand-logo svg {
+      width: 28px;
+      height: 28px;
+      color: var(--text-main);
+    }
+
+    /* Indicador Parpadeante */
     .status-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent-bronze-light); color: var(--accent-bronze);
-      padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(217, 119, 6, 0.15);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      color: var(--accent-orange-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
-    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-bronze); }
-    
-    .title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
-    .subtitle { color: var(--accent-bronze); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
-    .author { border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 12px; font-size: 0.775rem; color: var(--text-muted); }
 
-    .card {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 20px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    .blink-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-orange-light);
+      box-shadow: 0 0 8px var(--accent-orange-light);
+      animation: pulse-animation 1.5s infinite ease-in-out;
     }
-    .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-    .card-desc { font-size: 0.825rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
 
-    .btn-stack { display: flex; flex-direction: column; gap: 8px; }
-    .btn-pill {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color);
-      background: #f8fafc; color: var(--text-main); text-decoration: none;
-      font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    @keyframes pulse-animation {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
     }
-    .btn-pill:hover { background: var(--accent-bronze); color: #ffffff; border-color: var(--accent-bronze); }
 
-    .footer { text-align: center; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 10px; }
+    .title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 16px;
+    }
+
+    .meta-authors {
+      border-top: 1px solid var(--card-border);
+      padding-top: 14px;
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+    }
+
+    .meta-authors span.bold {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .meta-authors span.muted {
+      color: var(--text-muted);
+    }
+
+    /* Modulo de Fecha y Revision */
+    .revision-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rev-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.825rem;
+    }
+
+    .rev-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .rev-label {
+      color: var(--text-muted);
+    }
+
+    .rev-date {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .rev-timeago {
+      color: var(--text-sub);
+    }
+
+    .rev-badge {
+      background: rgba(217, 119, 6, 0.2);
+      color: var(--accent-orange-light);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.775rem;
+      font-weight: 600;
+    }
+
+    /* Secciones y Tarjetas */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.825rem;
+      margin-bottom: 12px;
+    }
+
+    .cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+
+    .action-card:hover {
+      background: var(--btn-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-orange-light);
+    }
+
+    .card-text-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .card-text-sub {
+      font-size: 0.775rem;
+      color: var(--text-sub);
+    }
+
+    .card-arrow {
+      color: var(--text-muted);
+    }
+
+    /* Pie de página */
+    .footer-text {
+      text-align: center;
+      font-size: 0.725rem;
+      color: var(--text-sub);
+      letter-spacing: 0.05em;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Modal Keypad -->
+  <!-- Overlay Keypad PIN -->
   <div class="pin-overlay" id="pinOverlay">
     <div class="pin-box">
-      <i data-lucide="lock" style="color: var(--accent-bronze); margin-bottom: 8px;"></i>
-      <h3 style="font-family: 'Space Grotesk'; font-size: 1.1rem;">Acceso Restringido</h3>
-      <p style="font-size: 0.775rem; color: var(--text-muted);">Ingrese PIN de Oficina Técnica</p>
-      <div class="pin-dots">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="card-icon-box" style="margin: 0 auto 16px auto; width: 48px; height: 48px;">
+        <i data-lucide="lock"></i>
       </div>
+      <h2 style="font-size: 1.15rem; margin-bottom: 4px;">Acceso Oficina Técnica</h2>
+      <p style="color: var(--text-muted); font-size: 0.8rem;">Ingrese el PIN de seguridad</p>
+
+      <div class="pin-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
       <div class="keypad">
         <button class="key-btn" onclick="pressKey('1')">1</button>
         <button class="key-btn" onclick="pressKey('2')">2</button>
@@ -118,66 +375,198 @@
         <button class="key-btn" onclick="pressKey('7')">7</button>
         <button class="key-btn" onclick="pressKey('8')">8</button>
         <button class="key-btn" onclick="pressKey('9')">9</button>
-        <button class="key-btn" style="font-size: 0.75rem;" onclick="clearPin()">C</button>
+        <button class="key-btn" style="font-size: 0.8rem;" onclick="clearPin()">C</button>
         <button class="key-btn" onclick="pressKey('0')">0</button>
-        <button class="key-btn" style="font-size: 0.75rem;" onclick="deletePin()">←</button>
+        <button class="key-btn" style="font-size: 0.8rem;" onclick="deletePin()"><i data-lucide="delete"></i></button>
       </div>
     </div>
   </div>
 
-  <!-- Vista Principal -->
+  <!-- Contenedor Principal -->
   <div class="container">
+    
+    <!-- Header -->
     <header class="header-card">
-      <div class="status-badge"><span class="pulse-dot"></span> Obra en Ejecución</div>
-      <h1 class="title">EDIFICIO SAN MARTIN SUITES</h1>
-      <div class="subtitle">Oficina Técnica BIM</div>
-      <div class="author">SERES Desarrollos &bull; Arq. Favio Courtil</div>
+      <div class="header-top">
+        <div class="brand-logo">
+          <i data-lucide="layers"></i>
+          <span>SERES</span>
+        </div>
+        <div class="status-badge">
+          <span class="blink-dot"></span> Obra en ejecución
+        </div>
+      </div>
+
+      <h1 class="title">Edificio San Martín Suites</h1>
+      <p class="subtitle">Oficina Técnica BIM &bull; Bariloche, Río Negro</p>
+
+      <div class="meta-authors">
+        <span class="bold">SERES Desarrollos</span>
+        <span class="muted">Arq. Favio Courtil</span>
+      </div>
     </header>
 
-    <div class="card">
-      <div class="card-title"><i data-lucide="box" style="width: 18px; color: var(--accent-bronze);"></i> Modelo Federado 3D</div>
-      <p class="card-desc">Análisis de datos en tiempo real.</p>
-      <div class="btn-stack">
-        <a href="https://powerbi.microsoft.com" target="_blank" class="btn-pill">
-          <span>Modelo 3D ESTRUCTURA</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-        </a>
-        <a href="https://powerbi.microsoft.com" target="_blank" class="btn-pill">
-          <span>Modelo 3D ARQUITECTURA</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-        </a>
+    <!-- Barra de Última Actualización (CONFIGURABLE POR TI) -->
+    <div class="revision-bar">
+      <div class="rev-info">
+        <span class="rev-dot"></span>
+        <span class="rev-label">Planos vigentes &bull; última actualización:</span>
+        <span class="rev-date" id="displayDate">--</span>
+        <span class="rev-timeago" id="displayTimeAgo"></span>
       </div>
+      <!-- Edición Manual de Revisión -->
+      <div class="rev-badge">Rev. 00</div>
     </div>
 
-    <div class="card">
-      <div class="card-title"><i data-lucide="folder" style="width: 18px; color: var(--accent-bronze);"></i> Documentación Técnica</div>
-      <p class="card-desc">Planos ejecutivos PDF, planillas técnicas y especificaciones de obra siempre actualizados en nube.</p>
-      <div class="btn-stack">
-        <a href="https://drive.google.com" target="_blank" class="btn-pill">
-          <span>Documentación Ejecutiva</span> <i data-lucide="external-link" style="width: 16px;"></i>
+    <!-- Sección 3D -->
+    <section>
+      <h2 class="section-title">Modelo federado 3D</h2>
+      <p class="section-desc">Datos en tiempo real. Abrí el modelo de cada disciplina en el visor.</p>
+
+      <div class="cards-stack">
+        <!-- Modelo Estructura -->
+        <a href="https://powerbi.microsoft.com" target="_blank" class="action-card">
+          <div class="card-left">
+            <div class="card-icon-box"><i data-lucide="home"></i></div>
+            <div>
+              <div class="card-text-title">Modelo 3D Estructura</div>
+              <div class="card-text-sub">Hormigón armado y fundaciones</div>
+            </div>
+          </div>
+          <div class="card-arrow"><i data-lucide="arrow-right"></i></div>
+        </a>
+
+        <!-- Modelo Arquitectura -->
+        <a href="https://powerbi.microsoft.com" target="_blank" class="action-card">
+          <div class="card-left">
+            <div class="card-icon-box"><i data-lucide="box"></i></div>
+            <div>
+              <div class="card-text-title">Modelo 3D Arquitectura</div>
+              <div class="card-text-sub">Unidades, circulaciones y terminaciones</div>
+            </div>
+          </div>
+          <div class="card-arrow"><i data-lucide="arrow-right"></i></div>
         </a>
       </div>
-    </div>
+    </section>
 
-    <footer class="footer">DOCUMENTACIÓN CONFIDENCIAL &bull; USO EXCLUSIVO DE OBRA</footer>
+    <!-- Sección Documentación -->
+    <section>
+      <h2 class="section-title">Documentación técnica</h2>
+      <p class="section-desc">Planos ejecutivos en PDF, planillas técnicas y especificaciones de obra, siempre actualizados en la nube.</p>
+
+      <div class="cards-stack">
+        <a href="https://drive.google.com" target="_blank" class="action-card">
+          <div class="card-left">
+            <div class="card-icon-box"><i data-lucide="folder"></i></div>
+            <div>
+              <div class="card-text-title">Documentación ejecutiva</div>
+            </div>
+          </div>
+          <div class="card-arrow"><i data-lucide="external-link"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-text">
+      Documentación confidencial &bull; Uso exclusivo de obra
+    </footer>
+
   </div>
 
   <script>
     lucide.createIcons();
-    const PIN = "1234"; let entered = "";
-    function updateDots() {
-      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('filled', i < entered.length));
+
+    // ==========================================
+    // CONFIGURACIÓN DE FECHA MANUAL (EDITAR AQUÍ)
+    // Formato: AAAA, MM (0-indexed, donde Ene=0, Sep=8), DD
+    // ==========================================
+    const LAST_UPDATE_DATE = new Date(2026, 8, 28); // 28 de septiembre de 2026
+
+    function formatAndCalculateDate() {
+      const months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+      
+      const day = LAST_UPDATE_DATE.getDate();
+      const monthText = months[LAST_UPDATE_DATE.getMonth()];
+      const year = LAST_UPDATE_DATE.getFullYear();
+
+      // Renderizar fecha elegida
+      document.getElementById('displayDate').textContent = `${day} de ${monthText} de ${year}`;
+
+      // Calcular tiempo transcurrido
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const updateDateZero = new Date(LAST_UPDATE_DATE);
+      updateDateZero.setHours(0,0,0,0);
+
+      const diffTime = today - updateDateZero;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      let timeAgoText = "";
+      if (diffDays <= 0) {
+        timeAgoText = "· hoy";
+      } else if (diffDays === 1) {
+        timeAgoText = "· ayer";
+      } else {
+        timeAgoText = `· hace ${diffDays} días`;
+      }
+
+      document.getElementById('displayTimeAgo').textContent = timeAgoText;
     }
-    function pressKey(n) {
-      if(entered.length < 4) {
-        entered += n; updateDots();
-        if(entered.length === 4) setTimeout(() => {
-          if(entered === PIN) { document.getElementById('pinOverlay').classList.add('hidden'); localStorage.setItem('sm_light_auth', 'true'); }
-          else { alert('PIN Incorrecto'); entered = ""; updateDots(); }
-        }, 150);
+
+    formatAndCalculateDate();
+
+    // ==========================================
+    // LÓGICA DE PIN
+    // ==========================================
+    const PIN_SECRET = "1234";
+    let inputPin = "";
+
+    function updatePinDots() {
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, idx) => {
+        if (idx < inputPin.length) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      });
+    }
+
+    function pressKey(num) {
+      if (inputPin.length < 4) {
+        inputPin += num;
+        updatePinDots();
+        if (inputPin.length === 4) {
+          setTimeout(verifyPin, 150);
+        }
       }
     }
-    function clearPin() { entered = ""; updateDots(); }
-    function deletePin() { entered = entered.slice(0, -1); updateDots(); }
-    if(localStorage.getItem('sm_light_auth') === 'true') document.getElementById('pinOverlay').classList.add('hidden');
+
+    function clearPin() {
+      inputPin = "";
+      updatePinDots();
+    }
+
+    function deletePin() {
+      inputPin = inputPin.slice(0, -1);
+      updatePinDots();
+    }
+
+    function verifyPin() {
+      if (inputPin === PIN_SECRET) {
+        document.getElementById('pinOverlay').classList.add('hidden');
+        localStorage.setItem('san_martin_v3_auth', 'true');
+      } else {
+        alert("PIN Incorrecto");
+        clearPin();
+      }
+    }
+
+    if (localStorage.getItem('san_martin_v3_auth') === 'true') {
+      document.getElementById('pinOverlay').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
