@@ -406,7 +406,7 @@
       </div>
     </header>
 
-    <!-- Barra de Última Actualización (CONFIGURABLE POR TI) -->
+    <!-- Barra de Última Actualización -->
     <div class="revision-bar">
       <div class="rev-info">
         <span class="rev-dot"></span>
@@ -414,11 +414,28 @@
         <span class="rev-date" id="displayDate">--</span>
         <span class="rev-timeago" id="displayTimeAgo"></span>
       </div>
-      <!-- Edición Manual de Revisión -->
       <div class="rev-badge">Rev. 00</div>
     </div>
 
-    <!-- Sección 3D -->
+    <!-- 1. PRIMERA SECCIÓN: Documentación técnica (Google Drive) -->
+    <section>
+      <h2 class="section-title">Documentación técnica</h2>
+      <p class="section-desc">Planos ejecutivos en PDF, planillas técnicas y especificaciones de obra, siempre actualizados en la nube.</p>
+
+      <div class="cards-stack">
+        <a href="https://drive.google.com" target="_blank" class="action-card">
+          <div class="card-left">
+            <div class="card-icon-box"><i data-lucide="folder"></i></div>
+            <div>
+              <div class="card-text-title">Documentación ejecutiva</div>
+            </div>
+          </div>
+          <div class="card-arrow"><i data-lucide="external-link"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. SEGUNDA SECCIÓN: Modelos 3D -->
     <section>
       <h2 class="section-title">Modelo federado 3D</h2>
       <p class="section-desc">Datos en tiempo real. Abrí el modelo de cada disciplina en el visor.</p>
@@ -450,24 +467,6 @@
       </div>
     </section>
 
-    <!-- Sección Documentación -->
-    <section>
-      <h2 class="section-title">Documentación técnica</h2>
-      <p class="section-desc">Planos ejecutivos en PDF, planillas técnicas y especificaciones de obra, siempre actualizados en la nube.</p>
-
-      <div class="cards-stack">
-        <a href="https://drive.google.com" target="_blank" class="action-card">
-          <div class="card-left">
-            <div class="card-icon-box"><i data-lucide="folder"></i></div>
-            <div>
-              <div class="card-text-title">Documentación ejecutiva</div>
-            </div>
-          </div>
-          <div class="card-arrow"><i data-lucide="external-link"></i></div>
-        </a>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer-text">
       Documentación confidencial &bull; Uso exclusivo de obra
@@ -478,10 +477,7 @@
   <script>
     lucide.createIcons();
 
-    // ==========================================
-    // CONFIGURACIÓN DE FECHA MANUAL (EDITAR AQUÍ)
-    // Formato: AAAA, MM (0-indexed, donde Ene=0, Sep=8), DD
-    // ==========================================
+    // Configuración de fecha
     const LAST_UPDATE_DATE = new Date(2026, 8, 28); // 28 de septiembre de 2026
 
     function formatAndCalculateDate() {
@@ -491,10 +487,8 @@
       const monthText = months[LAST_UPDATE_DATE.getMonth()];
       const year = LAST_UPDATE_DATE.getFullYear();
 
-      // Renderizar fecha elegida
       document.getElementById('displayDate').textContent = `${day} de ${monthText} de ${year}`;
 
-      // Calcular tiempo transcurrido
       const today = new Date();
       today.setHours(0,0,0,0);
       const updateDateZero = new Date(LAST_UPDATE_DATE);
@@ -517,9 +511,7 @@
 
     formatAndCalculateDate();
 
-    // ==========================================
-    // LÓGICA DE PIN
-    // ==========================================
+    // Lógica de PIN
     const PIN_SECRET = "1234";
     let inputPin = "";
 
