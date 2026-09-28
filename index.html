@@ -3,65 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edificio San Martín 465 - Oficina Técnica</title>
+  <title>EDIFICIO SAN MARTIN SUITES - Oficina Técnica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg-dark: #0a0e17;
-      --bg-card: rgba(18, 26, 41, 0.75);
-      --border-color: rgba(197, 168, 128, 0.25);
-      --accent-gold: #c5a880;
-      --accent-gold-light: #e2c9a6;
-      --accent-cyan: #38bdf8;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg-slate: #0b0f19;
+      --panel-bg: rgba(17, 24, 39, 0.7);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --accent-copper: #d97706;
+      --accent-gold: #f59e0b;
+      --accent-glow: rgba(217, 119, 6, 0.15);
+      --text-heading: #f8fafc;
+      --text-body: #94a3b8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      background-color: var(--bg-slate);
+      color: var(--text-heading);
+      font-family: 'Inter', -apple-system, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 24px;
       position: relative;
       overflow-x: hidden;
-      padding: 20px;
     }
 
+    /* Fondo técnico */
     body::before {
       content: '';
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        radial-gradient(circle at 15% 20%, rgba(197, 168, 128, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
       z-index: -1;
     }
 
-    /* Modals & Keypad Pin */
+    /* Modal PIN */
     .pin-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(10, 14, 23, 0.95);
-      backdrop-filter: blur(15px);
+      background: rgba(11, 15, 25, 0.96);
+      backdrop-filter: blur(20px);
       z-index: 999;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -73,174 +72,158 @@
       pointer-events: none;
     }
 
-    .pin-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 32px;
-      max-width: 360px;
+    .pin-box {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      padding: 36px 28px;
+      max-width: 340px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
     .pin-dots {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin: 24px 0;
+      gap: 14px;
+      margin: 24px 0 28px;
     }
 
     .dot {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      border: 2px solid var(--accent-gold);
-      transition: background-color 0.2s, transform 0.2s;
+      border: 2px solid var(--accent-copper);
+      transition: all 0.2s;
     }
 
     .dot.filled {
-      background-color: var(--accent-gold);
-      transform: scale(1.1);
+      background: var(--accent-gold);
+      box-shadow: 0 0 10px var(--accent-gold);
+      transform: scale(1.15);
     }
 
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      max-width: 260px;
-      margin: 0 auto;
     }
 
     .key-btn {
       aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
-      color: var(--text-main);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-heading);
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.25rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
     .key-btn:active {
-      background: var(--accent-gold);
-      color: #000;
-      transform: scale(0.95);
+      background: var(--accent-copper);
+      color: #fff;
+      transform: scale(0.92);
     }
 
-    /* Main Container */
-    .app-container {
-      max-width: 540px;
+    /* Layout Principal Bento */
+    .container {
+      max-width: 520px;
       width: 100%;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      padding-bottom: 30px;
     }
 
-    /* Header */
-    .brand-header {
-      text-align: center;
-      padding: 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .header-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
       border-radius: 24px;
-      backdrop-filter: blur(10px);
+      padding: 28px 24px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      position: relative;
     }
 
-    .brand-badge {
+    .badge-status {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(197, 168, 128, 0.12);
-      border: 1px solid var(--accent-gold);
+      gap: 8px;
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px solid rgba(217, 119, 6, 0.3);
       color: var(--accent-gold);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.725rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .status-dot {
+    .pulse-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: var(--accent-gold);
+      background: var(--accent-gold);
       box-shadow: 0 0 8px var(--accent-gold);
     }
 
-    .brand-title {
-      font-size: 1.75rem;
+    .main-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       margin-bottom: 4px;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .brand-subtitle {
+    .sub-title {
+      font-family: 'Space Grotesk', sans-serif;
       color: var(--accent-gold);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
-    .author-tag {
+    .meta-credits {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
       font-size: 0.8rem;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 12px;
-      margin-top: 8px;
+      color: var(--text-body);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
     }
 
-    /* Cards */
-    .access-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
+    .bento-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
       padding: 24px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.3s;
     }
 
-    .access-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
-      background: var(--accent-gold);
-      opacity: 0.5;
-      transition: opacity 0.3s;
+    .bento-card:hover {
+      border-color: rgba(217, 119, 6, 0.4);
     }
 
-    .access-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-    }
-
-    .access-card:hover::before {
-      opacity: 1;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
+    .card-header-icon {
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
-      background: rgba(197, 168, 128, 0.1);
+      background: var(--accent-glow);
       color: var(--accent-gold);
       display: flex;
       align-items: center;
@@ -248,62 +231,68 @@
       margin-bottom: 16px;
     }
 
-    .card-title {
+    .card-heading {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 6px;
     }
 
-    .card-desc {
-      color: var(--text-muted);
+    .card-info {
+      color: var(--text-body);
       font-size: 0.875rem;
       line-height: 1.5;
       margin-bottom: 20px;
     }
 
-    .card-btn {
-      display: inline-flex;
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
-      padding: 12px 18px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-main);
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-heading);
       text-decoration: none;
+      font-weight: 500;
       font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    .card-btn:hover {
-      background: var(--accent-gold);
-      color: #0a0e17;
-      border-color: var(--accent-gold);
+    .action-btn:hover {
+      background: var(--accent-copper);
+      border-color: var(--accent-copper);
+      color: #fff;
+      transform: translateY(-1px);
     }
 
-    /* Footer */
-    .app-footer {
+    .footer-text {
       text-align: center;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      padding: 16px;
-      letter-spacing: 0.05em;
+      font-size: 0.725rem;
+      color: var(--text-body);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Modal Keypad PIN -->
+  <!-- Keypad PIN Overlay -->
   <div class="pin-overlay" id="pinOverlay">
-    <div class="pin-card">
-      <div class="card-icon" style="margin: 0 auto 16px auto;">
-        <i data-lucide="lock"></i>
+    <div class="pin-box">
+      <div class="card-header-icon" style="margin: 0 auto 16px auto;">
+        <i data-lucide="shield-check"></i>
       </div>
-      <h2 style="font-size: 1.25rem; margin-bottom: 4px;">Acceso Restringido</h2>
-      <p style="color: var(--text-muted); font-size: 0.85rem;">Ingrese el PIN de la Oficina Técnica</p>
-      
+      <h2 style="font-family: 'Space Grotesk'; font-size: 1.2rem; margin-bottom: 4px;">Acceso Oficina Técnica</h2>
+      <p style="color: var(--text-body); font-size: 0.825rem;">Ingrese el PIN para acceder a la documentación</p>
+
       <div class="pin-dots">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -312,64 +301,72 @@
       </div>
 
       <div class="keypad">
-        <button class="key-btn" onclick="pressKey(1)">1</button>
-        <button class="key-btn" onclick="pressKey(2)">2</button>
-        <button class="key-btn" onclick="pressKey(3)">3</button>
-        <button class="key-btn" onclick="pressKey(4)">4</button>
-        <button class="key-btn" onclick="pressKey(5)">5</button>
-        <button class="key-btn" onclick="pressKey(6)">6</button>
-        <button class="key-btn" onclick="pressKey(7)">7</button>
-        <button class="key-btn" onclick="pressKey(8)">8</button>
-        <button class="key-btn" onclick="pressKey(9)">9</button>
+        <button class="key-btn" onclick="pressKey('1')">1</button>
+        <button class="key-btn" onclick="pressKey('2')">2</button>
+        <button class="key-btn" onclick="pressKey('3')">3</button>
+        <button class="key-btn" onclick="pressKey('4')">4</button>
+        <button class="key-btn" onclick="pressKey('5')">5</button>
+        <button class="key-btn" onclick="pressKey('6')">6</button>
+        <button class="key-btn" onclick="pressKey('7')">7</button>
+        <button class="key-btn" onclick="pressKey('8')">8</button>
+        <button class="key-btn" onclick="pressKey('9')">9</button>
         <button class="key-btn" style="font-size: 0.8rem;" onclick="clearPin()">C</button>
-        <button class="key-btn" onclick="pressKey(0)">0</button>
+        <button class="key-btn" onclick="pressKey('0')">0</button>
         <button class="key-btn" style="font-size: 0.8rem;" onclick="deletePin()"><i data-lucide="delete"></i></button>
       </div>
     </div>
   </div>
 
   <!-- Contenido Principal -->
-  <div class="app-container">
-    <header class="brand-header">
-      <div class="brand-badge">
-        <span class="status-dot"></span> Obra en Ejecución
+  <div class="container">
+    <header class="header-card">
+      <div class="badge-status">
+        <span class="pulse-dot"></span> Obra en Ejecución
       </div>
-      <h1 class="brand-title">Edificio San Martín 465</h1>
-      <div class="brand-subtitle">Oficina Técnica BIM</div>
-      <div class="author-tag">
-        SERES Desarrollos &bull; Arq. Favio Courtil
+      <h1 class="main-title">EDIFICIO SAN MARTIN SUITES</h1>
+      <div class="sub-title">Oficina Técnica BIM</div>
+      <div class="meta-credits">
+        <span>SERES Desarrollos</span> &bull; <span>Arq. Favio Courtil</span>
       </div>
     </header>
 
-    <main style="display: flex; flex-direction: column; gap: 16px;">
-      <!-- Tarjeta 1: Modelo 3D -->
-      <div class="access-card">
-        <div class="card-icon">
-          <i data-lucide="box"></i>
-        </div>
-        <h3 class="card-title">Modelo Federado 3D</h3>
-        <p class="card-desc">Recorrido virtual interactivo y visualización BIM. Arquitectura, estructura e instalaciones integradas.</p>
-        <a href="https://powerbi.microsoft.com" target="_blank" class="card-btn">
-          <span>Acceso al Modelo 3D</span>
+    <!-- Módulo 3D -->
+    <section class="bento-card">
+      <div class="card-header-icon">
+        <i data-lucide="box"></i>
+      </div>
+      <h2 class="card-heading">Modelo Federado 3D</h2>
+      <p class="card-info">Análisis de datos en tiempo real.</p>
+      
+      <div class="btn-group">
+        <a href="https://powerbi.microsoft.com" target="_blank" class="action-btn">
+          <span>Modelo 3D ESTRUCTURA</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="https://powerbi.microsoft.com" target="_blank" class="action-btn">
+          <span>Modelo 3D ARQUITECTURA</span>
           <i data-lucide="arrow-right"></i>
         </a>
       </div>
+    </section>
 
-      <!-- Tarjeta 2: Documentación -->
-      <div class="access-card">
-        <div class="card-icon">
-          <i data-lucide="folder-git-2"></i>
-        </div>
-        <h3 class="card-title">Documentación Técnica</h3>
-        <p class="card-desc">Planos ejecutivos PDF, planillas técnicas y especificaciones de obra siempre actualizados en nube.</p>
-        <a href="https://drive.google.com" target="_blank" class="card-btn">
-          <span>Acceso a Documentación (Drive)</span>
+    <!-- Módulo Documentación -->
+    <section class="bento-card">
+      <div class="card-header-icon">
+        <i data-lucide="folder-git-2"></i>
+      </div>
+      <h2 class="card-heading">Documentación Técnica</h2>
+      <p class="card-info">Planos ejecutivos PDF, planillas técnicas y especificaciones de obra siempre actualizados en nube.</p>
+      
+      <div class="btn-group">
+        <a href="https://drive.google.com" target="_blank" class="action-btn">
+          <span>Documentación Ejecutiva</span>
           <i data-lucide="external-link"></i>
         </a>
       </div>
-    </main>
+    </section>
 
-    <footer class="app-footer">
+    <footer class="footer-text">
       DOCUMENTACIÓN CONFIDENCIAL &bull; USO EXCLUSIVO DE OBRA
     </footer>
   </div>
@@ -377,13 +374,13 @@
   <script>
     lucide.createIcons();
 
-    const CORRECT_PIN = "1234";
-    let enteredPin = "";
+    const PIN_SECRET = "1234";
+    let inputPin = "";
 
-    function updateDots() {
+    function updatePinView() {
       const dots = document.querySelectorAll('.dot');
-      dots.forEach((dot, index) => {
-        if (index < enteredPin.length) {
+      dots.forEach((dot, idx) => {
+        if (idx < inputPin.length) {
           dot.classList.add('filled');
         } else {
           dot.classList.remove('filled');
@@ -391,38 +388,37 @@
       });
     }
 
-    function pressKey(num) {
-      if (enteredPin.length < 4) {
-        enteredPin += num;
-        updateDots();
-        if (enteredPin.length === 4) {
-          setTimeout(checkPin, 200);
+    function pressKey(val) {
+      if (inputPin.length < 4) {
+        inputPin += val;
+        updatePinView();
+        if (inputPin.length === 4) {
+          setTimeout(verifyPin, 150);
         }
       }
     }
 
     function clearPin() {
-      enteredPin = "";
-      updateDots();
+      inputPin = "";
+      updatePinView();
     }
 
     function deletePin() {
-      enteredPin = enteredPin.slice(0, -1);
-      updateDots();
+      inputPin = inputPin.slice(0, -1);
+      updatePinView();
     }
 
-    function checkPin() {
-      if (enteredPin === CORRECT_PIN) {
+    function verifyPin() {
+      if (inputPin === PIN_SECRET) {
         document.getElementById('pinOverlay').classList.add('hidden');
-        localStorage.setItem('san_martin_auth', 'true');
+        localStorage.setItem('sm_suites_auth', 'true');
       } else {
         alert("PIN Incorrecto");
         clearPin();
       }
     }
 
-    // Auto unlock if previously authenticated
-    if (localStorage.getItem('san_martin_auth') === 'true') {
+    if (localStorage.getItem('sm_suites_auth') === 'true') {
       document.getElementById('pinOverlay').classList.add('hidden');
     }
   </script>
