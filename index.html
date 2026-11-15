@@ -177,11 +177,12 @@
 
   <!-- ####################################################################
        ## BUSCÁ CON Ctrl+F LA FRASE:  EDITAR AQUI
-       ## Hay 4 lugares para modificar:
+       ## Hay 5 lugares para modificar:
        ##   1) Documentación ejecutiva       (link de Google Drive)
        ##   2) Modelo 3D Estructura          (link Power BI)
        ##   3) Modelo 3D Arquitectura        (link Power BI)
-       ##   4) Fecha de última actualización (está al final, dentro del <script>)
+       ##   4) Modelo 3D Instalaciones        (link pendiente)
+       ##   5) Fecha de última actualización (está al final, dentro del <script>)
        #################################################################### -->
 
   <!-- Overlay Keypad PIN -->
@@ -245,7 +246,7 @@
         </div>
         <div class="rev-tags">
           <span class="rev-timeago" id="displayTimeAgo"></span>
-          <span class="rev-badge">Rev. 01</span>
+          <span class="rev-badge">Rev. 02</span>
         </div>
       </div>
       <div class="rev-updated">Actualizado el <span class="rev-date" id="displayDate">--</span></div>
@@ -256,7 +257,7 @@
       <p class="section-desc">Planos ejecutivos en PDF, planillas técnicas y especificaciones de obra, siempre actualizados en la nube.</p>
       <div class="cards-stack">
         <!-- ################################################################ -->
-        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (1 de 4)  <<<<<<<<<<<<<<<<<<<< -->
+        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (1 de 5)  <<<<<<<<<<<<<<<<<<<< -->
         <!-- LINK DE DOCUMENTACIÓN EJECUTIVA (Google Drive)                    -->
         <!-- Cambiá solo lo que está entre comillas en href="..."              -->
         <!-- ################################################################ -->
@@ -275,7 +276,7 @@
       <p class="section-desc">Datos en tiempo real. Abrí el modelo de cada disciplina en el visor.</p>
       <div class="cards-stack">
         <!-- ################################################################ -->
-        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (2 de 4)  <<<<<<<<<<<<<<<<<<<< -->
+        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (2 de 5)  <<<<<<<<<<<<<<<<<<<< -->
         <!-- LINK DEL MODELO FEDERADO DE ESTRUCTURA (Power BI)                 -->
         <!-- Cambiá solo lo que está entre comillas en href="..."              -->
         <!-- ################################################################ -->
@@ -291,7 +292,7 @@
         </a>
 
         <!-- ################################################################ -->
-        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (3 de 4)  <<<<<<<<<<<<<<<<<<<< -->
+        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (3 de 5)  <<<<<<<<<<<<<<<<<<<< -->
         <!-- LINK DEL MODELO FEDERADO DE ARQUITECTURA (Power BI)               -->
         <!-- Cambiá solo lo que está entre comillas en href="..."              -->
         <!-- ################################################################ -->
@@ -301,6 +302,23 @@
             <div>
               <div class="card-text-title">Modelo 3D Arquitectura</div>
               <div class="card-text-sub">Unidades, circulaciones y terminaciones</div>
+            </div>
+          </div>
+          <div class="card-arrow"><i data-lucide="arrow-right"></i></div>
+        </a>
+        
+        <!-- ################################################################ -->
+        <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (4 de 5)  <<<<<<<<<<<<<<<<<<<< -->
+        <!-- LINK DEL MODELO 3D INSTALACIONES — PENDIENTE                     -->
+        <!-- Reemplazá solo el # entre comillas en href="#" por tu enlace      -->
+        <!-- Cuando coloques el enlace, eliminá onclick="return false;"       -->
+        <!-- ################################################################ -->
+        <a href="#" onclick="return false;" target="_blank" class="action-card">
+          <div class="card-left">
+            <div class="card-icon-box"><i data-lucide="wrench"></i></div>
+            <div>
+              <div class="card-text-title">Modelo 3D Instalaciones</div>
+              <div class="card-text-sub">Check de compatibilidad con ARQUITECTURA y ESTRUCTURA</div>
             </div>
           </div>
           <div class="card-arrow"><i data-lucide="arrow-right"></i></div>
@@ -317,7 +335,7 @@
     lucide.createIcons();
 
     // ####################################################################
-    // >>>>>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (4 de 4)  <<<<<<<<<<<<<<<<<<<<<
+    // >>>>>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (5 de 5)  <<<<<<<<<<<<<<<<<<<<<
     // FECHA DE ÚLTIMA ACTUALIZACIÓN
     // Formato:  new Date(AÑO, MES, DÍA)
     // ¡CUIDADO! El MES empieza en 0:
@@ -325,7 +343,7 @@
     //   julio=6  agosto=7  septiembre=8  octubre=9  noviembre=10  diciembre=11
     // Ejemplo: 15 de octubre de 2026  →  new Date(2026, 9, 15)
     // ####################################################################
-    const LAST_UPDATE_DATE = new Date(2026, 9, 26); // 28 de septiembre de 2026
+    const LAST_UPDATE_DATE = new Date(2026, 10, 14); // 14 de noviembre de 2026
 
     // Devuelve "hoy", "ayer", "hace 5 días", "hace 1 semana", "hace 3 meses", etc.
     function tiempoRelativo(dias) {
