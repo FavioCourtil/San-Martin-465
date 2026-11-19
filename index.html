@@ -181,7 +181,7 @@
        ##   1) Documentación ejecutiva       (link de Google Drive)
        ##   2) Modelo 3D Estructura          (link Power BI)
        ##   3) Modelo 3D Arquitectura        (link Power BI)
-       ##   4) Modelo 3D Instalaciones        (link pendiente)
+       ##   4) Modelo 3D Instalaciones        (link Power BI)
        ##   5) Fecha de última actualización (está al final, dentro del <script>)
        #################################################################### -->
 
@@ -246,7 +246,7 @@
         </div>
         <div class="rev-tags">
           <span class="rev-timeago" id="displayTimeAgo"></span>
-          <span class="rev-badge">Rev. 02</span>
+          <span class="rev-badge">Rev. 03</span>
         </div>
       </div>
       <div class="rev-updated">Actualizado el <span class="rev-date" id="displayDate">--</span></div>
@@ -309,11 +309,10 @@
         
         <!-- ################################################################ -->
         <!-- >>>>>>>>>>>>>>>>>>>>  EDITAR AQUI  (4 de 5)  <<<<<<<<<<<<<<<<<<<< -->
-        <!-- LINK DEL MODELO 3D INSTALACIONES — PENDIENTE                     -->
-        <!-- Reemplazá solo el # entre comillas en href="#" por tu enlace      -->
-        <!-- Cuando coloques el enlace, eliminá onclick="return false;"       -->
+        <!-- LINK DEL MODELO 3D INSTALACIONES (Power BI)                     -->
+        <!-- Cambiá solo lo que está entre comillas en href="..."      -->
         <!-- ################################################################ -->
-        <a href="#" onclick="return false;" target="_blank" class="action-card">
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiMzZkZGZlYjktN2ZmZi00NjM2LThkYjMtYTViZDM1NzY5ODMwIiwidCI6IjI2MWYyOGVmLWZlNmYtNGZmMi1hMzY4LTU1YTVmZjRhYmYwOCIsImMiOjR9" target="_blank" class="action-card">
           <div class="card-left">
             <div class="card-icon-box"><i data-lucide="wrench"></i></div>
             <div>
@@ -343,7 +342,7 @@
     //   julio=6  agosto=7  septiembre=8  octubre=9  noviembre=10  diciembre=11
     // Ejemplo: 15 de octubre de 2026  →  new Date(2026, 9, 15)
     // ####################################################################
-    const LAST_UPDATE_DATE = new Date(2026, 10, 14); // 14 de noviembre de 2026
+    const LAST_UPDATE_DATE = new Date(2026, 10, 19); // 19 de noviembre de 2026
 
     // Devuelve "hoy", "ayer", "hace 5 días", "hace 1 semana", "hace 3 meses", etc.
     function tiempoRelativo(dias) {
